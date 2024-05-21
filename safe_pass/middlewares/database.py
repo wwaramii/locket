@@ -17,4 +17,5 @@ class DatabaseMiddleware(BaseMiddleware):
                         Dict[str, Any]], Awaitable[Any]], 
                         event: TelegramObject, 
                         data: Dict[str, Any]) -> Any:
-        return handler(event, data, database=self.database)
+        data['database'] = self.database
+        return await handler(event, data)
