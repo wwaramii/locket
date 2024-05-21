@@ -18,8 +18,8 @@ class User(BaseModel):
     documents: List['Document'] = []
 
     class Config:
-        populate_by_name=True,
-        arbitrary_types_allowed=True,
+        populate_by_name = True
+        from_attributes = True
 
 
 class Document(BaseModel):
