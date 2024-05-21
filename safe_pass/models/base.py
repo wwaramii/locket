@@ -1,5 +1,5 @@
+from datetime import datetime
 from pydantic import BaseModel, Field, BeforeValidator
-from pantherdb import PantherDB
 from typing import AnyStr, List, Optional, Annotated
 
 
@@ -10,7 +10,17 @@ PyObjectId = Annotated[str, BeforeValidator(str)]
 
 class User(BaseModel):
     """
-    All data are stored based on the owner(user).
+    document_pack and key would be cleared after 5 minutes each time user logs in.
+    """
+    id: Optional[PyObjectId | int | str] = Field(alias="_id", default=None)
+    user_id: int
+    document_pack: 'DocumentPack' = None
+    key: AnyStr = None
+    last_login: datetime = None
+
+
+class DocumentPack(BaseModel):
+    """
     we would not save any user id or secret phrase.
     """
     id: Optional[PyObjectId | int | str] = Field(alias="_id", default=None)
