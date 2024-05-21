@@ -15,7 +15,7 @@ class User(BaseModel):
     """
     id: Optional[PyObjectId | int | str] = Field(alias="_id", default=None)
     identifier: AnyStr # this will be generated using telegram user id and secret phrase.
-    documents: List['Document']
+    documents: List['Document'] = []
 
     class Config:
         populate_by_name=True,
