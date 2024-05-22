@@ -5,9 +5,9 @@ from safe_pass.db import DBBase, DocumentNotFoundError
 from safe_pass.models.base import User
 from safe_pass.keyboards import InlineConstructor
 from safe_pass import security
+from safe_pass.states.login import Login
 
 from .router import pack_router
-from .states import Login
 
 
 async def start_login(state: FSMContext):
@@ -34,13 +34,16 @@ async def login_with_secret_key(message: types.Message,
                                 state: FSMContext,
                                 user: User,
                                 database: DBBase):
-    identifier = security.generate_identifier(str(user.user_id), message.text)
+    secret_key = message.text
+    # delete the message
+    await message.delete()
+    identifier = security.generate_identifier(str(user.user_id), secret_key)
     try:
         doc_pack = await database.read_one_doc_pack(dict(identifier=identifier))
         user.document_pack = doc_pack
         user.key = security.generate_key(doc_pack.identifier,
                                          str(user.user_id),
-                                         message.text)
+                                         secret_key)
         await database.update_user(dict(user_id=user.user_id), user)
         await state.clear()
         m = """<b>You successfully logged in! 🎉</b>
