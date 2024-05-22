@@ -46,7 +46,7 @@ class Panther(DBBase, PantherDB):
         doc = self.users_collection.find_one(**query)
         if not doc:
             raise DocumentNotFoundError(_from=self, query=query)
-        return User.model_validate(**doc)
+        return User.model_validate(doc)
 
     async def create_doc_pack(self, doc_pack: DocumentPack) -> DocumentPack:
         doc = self.doc_packs_collection.insert_one(**doc_pack.model_dump())
@@ -62,4 +62,4 @@ class Panther(DBBase, PantherDB):
         doc = self.doc_packs_collection.find_one(**query)
         if not doc:
             raise DocumentNotFoundError(_from=self, query=query)
-        return DocumentPack.model_validate(**doc)
+        return DocumentPack.model_validate(doc)
