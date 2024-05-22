@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import AsyncGenerator, Dict
+from typing import AsyncIterator, Dict
 from safe_pass.models import User, DocumentPack, Document
 
 
@@ -41,5 +41,5 @@ class DBBase(ABC):
         ...
     
     @abstractmethod
-    async def read_many_docs(self, query: Dict) -> AsyncGenerator[Document]:
+    async def read_many_docs(self, query: Dict, start: int = 0, end: int=-1) -> AsyncIterator[Document]:
         ...

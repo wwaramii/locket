@@ -1,4 +1,4 @@
-from typing import Any, AsyncGenerator, Dict
+from typing import Any, AsyncIterator, Dict
 from pantherdb import PantherDB
 from safe_pass.db.base import DBBase
 from safe_pass.db.exceptions import DocumentNotFoundError
@@ -84,10 +84,10 @@ class Panther(DBBase, PantherDB):
             raise DocumentNotFoundError(_from=self, query=query)
         return Document.model_validate(doc)
     
-    async def read_many_docs(self, query: Dict) -> AsyncGenerator[Document]:
+    async def read_many_docs(self, query: Dict, start: int = 0, end: int=-1) -> AsyncIterator[Document]:
         if query.get('id'):
             query['_id'] = query.pop('query')
         
         docs = self.docs_collection.find(**query)
-        for doc in docs:
+        for doc in docs[start:end]:
             yield Document.model_validate(doc)
