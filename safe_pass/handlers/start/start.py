@@ -21,9 +21,9 @@ async def start_handler(message: types.Message, **kwargs):
     name=formatting.TextMention(message.from_user.first_name, user=message.from_user).as_html(),
 )
     buttons = [
-        {"text": "• New | Create new pack", "callback_data": "new::create"},
-        {"text": "• Use | Use available pack", "callback_data": "user::pack"},
-        {"text": "• Info | How am I safe here?", "callback_data": "info::description"},
+        {"text": "• New | Create new pack", "callback_data": "pack::new"},
+        {"text": "• Use | Use available pack", "callback_data": "pack::use"},
+        {"text": "• Info | How am I safe here?", "callback_data": "global::description"},
     ]
     schema = [1, 1, 1]
 
