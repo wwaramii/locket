@@ -2,7 +2,7 @@ from typing import Any, Awaitable, Callable, Dict
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject
 
-from safe_pass.db.base import DBBase, DocumentNotFoundError
+from safe_pass.db import DBBase, DocumentNotFoundError
 from safe_pass.models import User
 
 
@@ -21,9 +21,9 @@ class DatabaseMiddleware(BaseMiddleware):
                         data: Dict[str, Any]) -> Any:
         # initialize user
         try:
-            user: User = await self.database.read_one_user(user_id=event.from_user.id)   
+            user: User = await self.database.read_one_user(dict(user_id=event.event.from_user.id))   
         except DocumentNotFoundError:
-            user: User = await self.database.create_user(User(user_id=event.from_user.id))
+            user: User = await self.database.create_user(User(user_id=event.event.from_user.id))
         # update arguments
         data['database'] = self.database
         data['user'] = user
