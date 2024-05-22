@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any, AsyncGenerator, Dict
 from pantherdb import PantherDB
 from safe_pass.db.base import DBBase
 from safe_pass.db.exceptions import DocumentNotFoundError
@@ -19,6 +19,7 @@ class Panther(DBBase, PantherDB):
             db_name: str = "safe_pass.pdb",
             user_collection: str = "users",
             doc_packs_collection: str = "doc_packs",
+            docs_collection: str = "docs",
             *,
             return_dict: bool = False,
             return_cursor: bool = False,
@@ -30,6 +31,7 @@ class Panther(DBBase, PantherDB):
                              secret_key=secret_key)
             self.users_collection = self.collection(user_collection)
             self.doc_packs_collection = self.collection(doc_packs_collection)
+            self.docs_collection = self.collection(docs_collection)
             self.__is_initialized = True
 
     async def create_user(self, user: User) -> User:
@@ -65,13 +67,27 @@ class Panther(DBBase, PantherDB):
         return DocumentPack.model_validate(doc)
 
     async def create_document(self, doc: Document) -> Document:
-        ...
+        doc = self.docs_collection.insert_one(**doc.model_dump())
+        return Document.model_validate(doc)
     
     async def update_doc(self, query: Dict, doc: Document) -> Document:
-        ...
+        is_updated = self.docs_collection.update_one(query, **doc.model_dump())
+        if not is_updated:
+            raise DocumentNotFoundError(_from=self, query=query)
+        return doc
     
     async def read_one_doc(self, query: Dict) -> Document:
-        ...
+        if query.get('id'):
+            query['_id'] = query.pop('query')
+        doc = self.docs_collection.find_one(**query)
+        if not doc:
+            raise DocumentNotFoundError(_from=self, query=query)
+        return Document.model_validate(doc)
     
-    async def read_one_doc(self, query: Dict) -> List[Document]:
-        ...
+    async def read_many_docs(self, query: Dict) -> AsyncGenerator[Document]:
+        if query.get('id'):
+            query['_id'] = query.pop('query')
+        
+        docs = self.docs_collection.find(**query)
+        for doc in docs:
+            yield Document.model_validate(doc)
