@@ -1,5 +1,4 @@
-from aiogram import types
-from aiogram import F
+from aiogram import types, F
 from aiogram.utils import formatting
 from aiogram.filters import Command
 from typing import Dict
@@ -54,9 +53,10 @@ You can now store your passwords securely. Remember to keep your secret key safe
     secret_key=formatting.Code(secret_key).as_html()
 )
     buttons = [
-        {"text": "❌ Delete Now!", "callback_data": "globals::delete_message"}
+        {"text": "❌ Delete Now!", "callback_data": "globals::delete_message"},
+        {"text": "🔙 Main menu", "callback_data": "start::start"}
     ]
     return {
         "text": m,
-        "reply_markup": InlineConstructor._create_kb(buttons, [1])
+        "reply_markup": InlineConstructor._create_kb(buttons, [1, 1])
     }
