@@ -14,19 +14,23 @@ class User(BaseModel):
     """
     document_pack and key would be cleared after 5 minutes each time user logs in.
     """
-    id: Optional[PyObjectId | int | str] = Field(alias="_id", default=None)
+    id: PyObjectId | int | str = Field(alias="_id", default=None)
     user_id: int
-    language: Languages
-    document_pack: 'DocumentPack' = None
-    key: AnyStr = None
-    last_login: datetime = None
+    language: Languages | None = None
+    document_pack: Optional['DocumentPack'] = None
+    key: AnyStr | None = None
+    last_login: datetime | None = None
+
+    class Config:
+        populate_by_name = True
+        from_attributes = True
 
 
 class DocumentPack(BaseModel):
     """
     we would not save any user id or secret phrase.
     """
-    id: Optional[PyObjectId | int | str] = Field(alias="_id", default=None)
+    id: PyObjectId | int | str = Field(alias="_id", default=None)
     identifier: AnyStr # this will be generated using telegram user id and secret phrase.
     documents: List['Document'] = []
 
