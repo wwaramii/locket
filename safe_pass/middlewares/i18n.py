@@ -1,10 +1,12 @@
 from aiogram.utils.i18n.middleware import I18nMiddleware
-from typing import Any, Dict
 from aiogram.types import Message, CallbackQuery
-from typing import Any, Awaitable, Callable, Dict
 from aiogram.types import TelegramObject
-from .utils import ask_for_language
-from safe_pass.models import User, Languages
+
+from typing import Any, Dict
+from typing import Any, Awaitable, Callable, Dict
+
+from .utils import ask_for_language, set_language
+from safe_pass.models import User
 from safe_pass.db import DBBase
 
 class CustomI18nMiddleware(I18nMiddleware):
@@ -34,11 +36,12 @@ class CustomI18nMiddleware(I18nMiddleware):
             # check for updating the user lang
             if isinstance(event.event, CallbackQuery) and event.event.data.startswith("select_lang::"):
                 lang = event.event.data.split("::")[-1]
-                user.language = Languages(lang.lower())
-                await database.update_user({"user_id": user.user_id}, user)
+                await set_language(database, user, lang, event.event)
+                return None
+
             # ask for user lang
             if not user.language:
-                await ask_for_language(update=event)
+                await ask_for_language(event=event.event)
                 return None
                          
         except KeyError:
