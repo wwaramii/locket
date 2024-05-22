@@ -3,7 +3,6 @@ from aiogram.fsm.context import FSMContext
 from aiogram.utils import formatting
 
 from .router import global_router
-from .utils import delete_message
 
 
 @global_router.callback_query(F.data == "globals::cancel")
