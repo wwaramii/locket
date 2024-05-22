@@ -9,9 +9,9 @@ from aiogram.utils.i18n import I18n
 
 from safe_pass.config import config
 from safe_pass.db.storages.panther import Panther
-from safe_pass.middlewares import DatabaseMiddleware, CustomI18nMiddleware
+from safe_pass.middlewares import DatabaseMiddleware, CustomI18nMiddleware, LoginRequiredMiddleware
 
-from safe_pass.handlers import start_router, pack_router, global_router
+from safe_pass.handlers import start_router, pack_router, global_router, docs_router
 
 
 def initialize_logging():
@@ -39,14 +39,19 @@ def main():
     # initialize database
     database = Panther()
     
-    # middlewares
+    # dispatcher middlewares
     dp.update.middleware(DatabaseMiddleware(database))
     dp.update.middleware(CustomI18nMiddleware(i18n))
-    
+
+    # routers middlewares
+    docs_router.message.middleware(LoginRequiredMiddleware())
+    docs_router.callback_query.middleware(LoginRequiredMiddleware())
+
     # add routers
     dp.include_router(global_router)
     dp.include_router(start_router)
     dp.include_router(pack_router)
+    dp.include_router(docs_router)
 
     # start polling
     asyncio.run(dp.start_polling(bot))

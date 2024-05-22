@@ -18,7 +18,7 @@ You'll gain access to all passwords stored in the pack.
 """)
     
     buttons = [
-        {"text": "🔙 Cancel", "callback_data": "globals::cancel"}
+        {"text": "🔚 Cancel", "callback_data": "globals::cancel"}
     ]
 
     await state.set_state(Login.secret_key)
