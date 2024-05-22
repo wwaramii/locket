@@ -10,12 +10,11 @@ def create_keyboard_layout(buttons: Sequence[T], schema: Sequence[int]) -> list[
     """
     if sum(schema) != len(buttons):
         raise ValueError("Invalid schema.")
-    
-    buttons: list[list[T]] = []
+    layout: list[list[T]] = []
     btn_number = 0
     for a in schema:
-        buttons.append([])
+        layout.append([])
         for _ in range(a):
-            buttons[-1].append(buttons[btn_number])
+            layout[-1].append(buttons[btn_number])
             btn_number += 1
-    return buttons
+    return layout
