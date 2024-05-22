@@ -1,19 +1,22 @@
 import asyncio
 import logging
 from safe_pass.db.storages.panther import Panther
-from safe_pass.models.base import User
-from .config import config
+from safe_pass.config import config
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.client.session.aiohttp import AiohttpSession
-from safe_pass.middlewares import DatabaseMiddleware
+from safe_pass.middlewares import DatabaseMiddleware, CustomI18nMiddleware
+from aiogram.utils.i18n import I18n
 
 def initialize_logging():
     logging.basicConfig(level=logging.DEBUG)
 
 
 def main():
+    # i18n
+    i18n = I18n(path="locales", default_locale="en", domain="messages")
+
     # logging
     initialize_logging()
 
@@ -31,7 +34,10 @@ def main():
     # initialize database
     database = Panther()
     
+    # middlewares
     dp.update.middleware(DatabaseMiddleware(database))
+    dp.update.middleware(CustomI18nMiddleware(i18n))
+
     # add routers
 
     # start polling
