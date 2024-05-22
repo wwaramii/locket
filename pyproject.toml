@@ -15,6 +15,7 @@ aiogram = "^3.6.0"
 pantherdb = "^2.1.0"
 pydantic = "^2.7.1"
 cryptography = "^42.0.7"
+aiohttp-socks = "^0.8.4"
 
 
 [build-system]
