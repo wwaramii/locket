@@ -4,7 +4,7 @@ from aiogram.filters import Command
 from typing import Dict
 from aiogram.utils.i18n import gettext as _
 
-from safe_pass.db.base import DBBase
+from safe_pass.db import DBBase, DocumentNotFoundError
 from safe_pass.keyboards import InlineConstructor
 from safe_pass.models.base import User, DocumentPack
 from safe_pass import security
@@ -34,6 +34,12 @@ async def create_pack(user: User, database: DBBase) -> str:
     secret_phrase = security.generate_secret_phrase()
     # generate pack identifier
     identifier = security.generate_identifier(str(user.user_id), secret_phrase)
+    # check if it already exists
+    try:
+        await database.read_one_doc_pack({'identifier': identifier})
+        return await create_pack(user, database)
+    except DocumentNotFoundError:
+        pass
     # create the document pack
     doc_pack = DocumentPack(identifier=identifier)
     await database.create_doc_pack(doc_pack)
