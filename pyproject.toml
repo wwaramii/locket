@@ -11,7 +11,7 @@ safe_pass = "safe_pass.bot:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-aiogram = "^3.6.0"
+aiogram = {extras = ["i18n"], version = "^3.6.0"}
 pantherdb = "^2.1.0"
 pydantic = "^2.7.1"
 cryptography = "^42.0.7"
