@@ -32,7 +32,6 @@ class DocumentPack(BaseModel):
     """
     id: PyObjectId | int | str = Field(alias="_id", default=None)
     identifier: AnyStr # this will be generated using telegram user id and secret phrase.
-    documents: List['Document'] = []
 
     class Config:
         populate_by_name = True
@@ -44,5 +43,11 @@ class Document(BaseModel):
     title can be a short description for the stored document.
     encrypted data can be decrypted using user_id and secret phrase.
     """
+    id: PyObjectId | int | str = Field(alias="_id", default=None)
+    document_pack_identifier: AnyStr
     title: AnyStr
     encrypted_data: AnyStr
+
+    class Config:
+        populate_by_name = True
+        from_attributes = True

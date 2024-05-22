@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Dict
-from safe_pass.models import User, DocumentPack
+from typing import Dict, List
+from safe_pass.models import User, DocumentPack, Document
 
 
 class DBBase(ABC):
@@ -28,4 +28,18 @@ class DBBase(ABC):
     async def read_one_doc_pack(self, query: Dict) -> DocumentPack:
         ...
     
-    # TODO: delete a doc_pack
+    @abstractmethod
+    async def create_document(self, doc: Document) -> Document:
+        ...
+    
+    @abstractmethod
+    async def update_doc(self, query: Dict, doc: Document) -> Document:
+        ...
+    
+    @abstractmethod
+    async def read_one_doc(self, query: Dict) -> Document:
+        ...
+    
+    @abstractmethod
+    async def read_one_doc(self, query: Dict) -> List[Document]:
+        ...

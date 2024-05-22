@@ -1,8 +1,8 @@
-from typing import Any, Dict
+from typing import Any, Dict, List
 from pantherdb import PantherDB
 from safe_pass.db.base import DBBase
 from safe_pass.db.exceptions import DocumentNotFoundError
-from safe_pass.models import User, DocumentPack
+from safe_pass.models import User, DocumentPack, Document
 
 
 class Panther(DBBase, PantherDB):
@@ -63,3 +63,15 @@ class Panther(DBBase, PantherDB):
         if not doc:
             raise DocumentNotFoundError(_from=self, query=query)
         return DocumentPack.model_validate(doc)
+
+    async def create_document(self, doc: Document) -> Document:
+        ...
+    
+    async def update_doc(self, query: Dict, doc: Document) -> Document:
+        ...
+    
+    async def read_one_doc(self, query: Dict) -> Document:
+        ...
+    
+    async def read_one_doc(self, query: Dict) -> List[Document]:
+        ...
