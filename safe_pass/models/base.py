@@ -2,6 +2,8 @@ from datetime import datetime
 from pydantic import BaseModel, Field, BeforeValidator
 from typing import AnyStr, List, Optional, Annotated
 
+from .enums import Languages
+
 
 # Represents an ObjectId field in the database.
 # It will be represented as a `str` on the model so that it can be serialized to JSON.
@@ -14,6 +16,7 @@ class User(BaseModel):
     """
     id: Optional[PyObjectId | int | str] = Field(alias="_id", default=None)
     user_id: int
+    language: Languages
     document_pack: 'DocumentPack' = None
     key: AnyStr = None
     last_login: datetime = None
