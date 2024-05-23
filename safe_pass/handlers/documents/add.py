@@ -26,7 +26,7 @@ async def start_add(cb: types.CallbackQuery,
     await state.clear()
     await state.update_data(document_pack_identifier=user.document_pack.identifier)
     await state.set_state(AddDocument.title)
-    await cb.message.edit_text(m, reply_markup=InlineConstructor._create_kb(buttons, [1]))
+    await cb.message.edit_text(m, reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
 
 
 @docs_router.message(AddDocument.title, F.text)
