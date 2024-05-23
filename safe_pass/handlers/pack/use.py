@@ -3,8 +3,9 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 
 from safe_pass.db.base import DBBase
-from safe_pass.keyboards import InlineConstructor
-from safe_pass.models.base import User, Document
+from safe_pass.keyboards.inline import (InlineConstructor,
+                                        CANCEL)
+from safe_pass.models.base import User
 
 from .router import pack_router
 from .login import start_login
@@ -63,7 +64,7 @@ async def use(database: DBBase,
     buttons.extend([
         {"text": "⬅️ Last page", "callback_data": f"pack::use{page-1}"},
         {"text": "➡️ Next page", "callback_data": f"pack::use?page={page+1}"},
-        {"text": "🔚 Cancel", "callback_data": "globals::cancel"}
+        CANCEL
     ])
     schema.extend([2, 1])
 

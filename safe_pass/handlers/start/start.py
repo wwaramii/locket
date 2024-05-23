@@ -3,7 +3,10 @@ from aiogram.utils import formatting
 from aiogram.filters import CommandStart
 from aiogram.utils.i18n import gettext as _
 
-from safe_pass.keyboards import InlineConstructor
+from safe_pass.keyboards.inline import (NEW_MENU,
+                                        USE_MENU,
+                                        INFO_MENU,
+                                        InlineConstructor)
 
 from .router import start_router
 
@@ -31,9 +34,9 @@ def prepare_answer(user: types.User):
     name=formatting.TextMention(user.first_name, user=user).as_html(),
 )
     buttons = [
-        {"text": "• New | Create new pack", "callback_data": "pack::new"},
-        {"text": "• Use | Use available pack", "callback_data": "pack::use"},
-        {"text": "• Info | How am I safe here?", "callback_data": "global::description"},
+        NEW_MENU,
+        USE_MENU,
+        INFO_MENU
     ]
     schema = [1, 1, 1]
 

@@ -3,7 +3,9 @@ from aiogram import types, F
 
 from safe_pass.db import DBBase, DocumentNotFoundError
 from safe_pass.models.base import User
-from safe_pass.keyboards import InlineConstructor
+from safe_pass.keyboards.inline import (InlineConstructor, 
+                                        MAIN_MENU, 
+                                        USE_MENU)
 from safe_pass import security
 from safe_pass.states.login import Login
 
@@ -52,8 +54,8 @@ You can now access all passwords stored in this pack with /use. <b>You will stay
 
 <b>🔒 Enjoy your secure experience!</b>"""
         buttons = [
-            {"text": "• New | Create new pack", "callback_data": "pack::new"},
-            {"text": "• Use | Use available pack", "callback_data": "pack::use"}
+            MAIN_MENU,
+            USE_MENU
         ]
         await message.answer(m,
                              reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))

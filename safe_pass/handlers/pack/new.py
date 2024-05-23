@@ -5,7 +5,8 @@ from typing import Dict
 from aiogram.utils.i18n import gettext as _
 
 from safe_pass.db import DBBase, DocumentNotFoundError
-from safe_pass.keyboards import InlineConstructor
+from safe_pass.keyboards.inline import (InlineConstructor,
+                                        DELETE_NOW)
 from safe_pass.models.base import User, DocumentPack
 from safe_pass import security
 from safe_pass.handlers.globals import utils
@@ -59,7 +60,7 @@ You can now store your passwords securely. Remember to keep your secret key safe
     secret_key=formatting.Code(secret_key).as_html()
 )
     buttons = [
-        {"text": "❌ Delete Now!", "callback_data": "globals::delete_message"},
+        DELETE_NOW
     ]
     return {
         "text": m,

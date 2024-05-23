@@ -4,7 +4,10 @@ from aiogram.fsm.context import FSMContext
 
 from safe_pass.db.base import DBBase
 from safe_pass import security
-from safe_pass.keyboards import InlineConstructor
+from safe_pass.keyboards.inline import (InlineConstructor,
+                                        CANCEL,
+                                        USE_MENU,
+                                        MAIN_MENU)
 from safe_pass.models.base import User, Document
 from safe_pass.states.add_document import AddDocument
 
@@ -17,7 +20,8 @@ async def start_add(cb: types.CallbackQuery,
                     user: User):
     m = """<b>1️⃣ Please enter a title for the password: </b>"""
     buttons = [
-        {"text": "🔚 Cancel", "callback_data": "globals::cancel"}
+        CANCEL,
+        USE_MENU
     ]
     await state.update_data(document_pack_identifier=user.document_pack.identifier)
     await state.set_state(AddDocument.title)
@@ -28,7 +32,7 @@ async def start_add(cb: types.CallbackQuery,
 async def set_title(message: types.Message, state: FSMContext):
     m = """<b>2️⃣ Now enter the password: </b>"""
     buttons = [
-        {"text": "🔚 Cancel", "callback_data": "globals::cancel"}
+        CANCEL
     ]
     await state.update_data(title=message.text)
     await state.set_state(AddDocument.data)
@@ -44,7 +48,7 @@ async def set_password(message: types.Message, state: FSMContext, user: User, da
     if not fsm_data.get('title') or not fsm_data.get('document_pack_identifier'):
         m = """ <b>😞 Something went wrong!</b>
 You can try again using /use ."""     
-        buttons = [{"text": "🔚 Cancel", "callback_data": "global::cancel"}]
+        buttons = [CANCEL]
         await message.answer(m, reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
         return
         
@@ -62,7 +66,7 @@ You can try again using /use ."""
 You can access it threw /use.
 """
     buttons = [
-        {"text": "• Start menu | bot main menu", "callback_data": "start::start"},
-        {"text": "• Use | Use available pack", "callback_data": "pack::use"},
+        MAIN_MENU,
+        USE_MENU
     ]
     await message.answer(m, reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
