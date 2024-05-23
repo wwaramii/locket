@@ -78,7 +78,7 @@ class Panther(DBBase, PantherDB):
     
     async def read_one_doc(self, query: Dict) -> Document:
         if query.get('id'):
-            query['_id'] = query.pop('query')
+            query['_id'] = query.pop('id')
         doc = self.docs_collection.find_one(**query)
         if not doc:
             raise DocumentNotFoundError(_from=self, query=query)
@@ -86,7 +86,7 @@ class Panther(DBBase, PantherDB):
     
     async def read_many_docs(self, query: Dict, start: int = 0, end: int=-1) -> AsyncIterator[Document]:
         if query.get('id'):
-            query['_id'] = query.pop('query')
+            query['_id'] = query.pop('id')
         
         docs = self.docs_collection.find(**query)
         for doc in docs[start:end]:
