@@ -1,4 +1,4 @@
-MAIN_MENU = {"text": "• MAin menu | bot main menu", 
+MAIN_MENU = {"text": "• Main menu | Bot main menu", 
             "callback_data": "start::start"}
 NEW_MENU = {"text": "• New | Create new pack", 
             "callback_data": "pack::new"}
