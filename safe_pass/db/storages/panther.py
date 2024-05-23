@@ -1,7 +1,7 @@
 from typing import Any, AsyncIterator, Dict
 from pantherdb import PantherDB
 from safe_pass.db.base import DBBase
-from safe_pass.db.exceptions import DocumentNotFoundError
+from safe_pass.db.exceptions import DocumentNotFoundError, OutrangeStartLimit
 from safe_pass.models import User, DocumentPack, Document
 
 
@@ -89,5 +89,7 @@ class Panther(DBBase, PantherDB):
             query['_id'] = query.pop('id')
         
         docs = self.docs_collection.find(**query)
+        if start != 0 and start > (len(docs) -1):
+            raise OutrangeStartLimit(self, start)
         for doc in docs[start:end]:
             yield Document.model_validate(doc)

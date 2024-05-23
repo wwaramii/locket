@@ -15,3 +15,9 @@ class DocumentNotFoundError(DataBaseBaseException):
     MESSAGE = "Could not found the specified document with query: {}"
     def __init__(self, _from: DBBase, query: Dict) -> None:
         super().__init__(_from, self.MESSAGE.format(query))
+    
+    
+class OutrangeStartLimit(DataBaseBaseException):
+    MESSAGE = "{} is out of range."
+    def __init__(self, _from: DBBase, start: int) -> None:
+        super().__init__(_from, self.MESSAGE.format(start))
