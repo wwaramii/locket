@@ -23,6 +23,7 @@ async def start_add(cb: types.CallbackQuery,
         CANCEL,
         USE_MENU
     ]
+    await state.clear()
     await state.update_data(document_pack_identifier=user.document_pack.identifier)
     await state.set_state(AddDocument.title)
     await cb.message.edit_text(m, reply_markup=InlineConstructor._create_kb(buttons, [1]))
@@ -44,6 +45,7 @@ async def set_password(message: types.Message, state: FSMContext, user: User, da
     await message.delete()
 
     fsm_data = await state.get_data()
+    await state.clear()
 
     if not fsm_data.get('title') or not fsm_data.get('document_pack_identifier'):
         m = """ <b>😞 Something went wrong!</b>
@@ -60,7 +62,6 @@ You can try again using /use ."""
                    title=fsm_data['title'],
                    encrypted_data=data)
     doc = await database.create_document(doc)
-    await state.clear()
     # answer
     m = """<b>Password was safely added to the pack🎉</b>
 You can access it threw /use or the below button..

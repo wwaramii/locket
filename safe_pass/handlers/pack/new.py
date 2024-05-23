@@ -3,6 +3,7 @@ from aiogram.utils import formatting
 from aiogram.filters import Command
 from typing import Dict
 from aiogram.utils.i18n import gettext as _
+from aiogram.fsm.context import FSMContext
 
 from safe_pass.db import DBBase, DocumentNotFoundError
 from safe_pass.keyboards.inline import (InlineConstructor,
@@ -15,7 +16,8 @@ from .router import pack_router
 
 
 @pack_router.message(Command("new"))
-async def new_command(message: types.Message, database: DBBase, user: User):
+async def new_command(message: types.Message, database: DBBase, user: User, state: FSMContext):
+    await state.clear()
     secret_key = await create_pack(user, database)
 
     m = await message.answer(**prepare_answer(secret_key))
@@ -23,7 +25,8 @@ async def new_command(message: types.Message, database: DBBase, user: User):
 
 
 @pack_router.callback_query(F.data == "pack::new")
-async def new_cb(cb: types.CallbackQuery, database: DBBase, user: User):
+async def new_cb(cb: types.CallbackQuery, database: DBBase, user: User, state: FSMContext):
+    await state.clear()
     secret_key = await create_pack(user, database)
 
     await cb.message.edit_text(**prepare_answer(secret_key))

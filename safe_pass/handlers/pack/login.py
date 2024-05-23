@@ -36,6 +36,7 @@ async def login_with_secret_key(message: types.Message,
                                 state: FSMContext,
                                 user: User,
                                 database: DBBase):
+    await state.clear()
     secret_key = message.text
     # delete the message
     await message.delete()
@@ -47,7 +48,6 @@ async def login_with_secret_key(message: types.Message,
                                          str(user.user_id),
                                          secret_key)
         await database.update_user(dict(user_id=user.user_id), user)
-        await state.clear()
         m = """<b>You successfully logged in! 🎉</b>
 
 You can now access all passwords stored in this pack with /use. <b>You will stay logged in for 5 minutes.</b>
@@ -60,6 +60,5 @@ You can now access all passwords stored in this pack with /use. <b>You will stay
         await message.answer(m,
                              reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
     except DocumentNotFoundError:
-        await state.clear()
         m = """<b>❗️ Invalid secret key. Please try again /use.</b>"""
         await message.answer(m)

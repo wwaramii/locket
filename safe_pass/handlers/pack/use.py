@@ -17,6 +17,7 @@ async def use_command(message: types.Message,
                       database: DBBase, 
                       user: User,
                       state: FSMContext):
+    await state.clear()
     await message.answer(**await use(database, user, state))
 
 
@@ -25,6 +26,7 @@ async def use_cb(cb: types.CallbackQuery,
                  database: DBBase, 
                  user: User,
                  state: FSMContext):
+    await state.clear()
     # paging
     page = int(cb.data.split("?page=")[-1]) if cb.data.split("?page=")[-1].isnumeric() else 0
     await cb.answer()

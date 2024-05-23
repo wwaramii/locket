@@ -1,6 +1,7 @@
 from aiogram import types, F
 from aiogram.utils import formatting
 from aiogram.filters import CommandStart
+from aiogram.fsm.context import FSMContext
 from aiogram.utils.i18n import gettext as _
 
 from safe_pass.keyboards.inline import (NEW_MENU,
@@ -12,12 +13,14 @@ from .router import start_router
 
 
 @start_router.message(CommandStart())
-async def start_handler(message: types.Message, **kwargs):
+async def start_handler(message: types.Message, state: FSMContext):
+    await state.clear()
     await message.answer(**prepare_answer(message.from_user))
 
 
 @start_router.callback_query(F.data == "start::start")
-async def start_handler_kb(cb: types.CallbackQuery, **kwargs):
+async def start_handler_kb(cb: types.CallbackQuery, state: FSMContext):
+    await state.clear()
     await cb.message.edit_text(**prepare_answer(cb.from_user))
 
 
