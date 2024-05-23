@@ -57,6 +57,8 @@ def prepare_answer(secret_key: str) -> Dict:
 You can now store your passwords securely. Remember to keep your secret key safe, as it's the only way to access your pack. <b>Without it, your passwords are lost.</b>
 
 ⛔️ <b>Secret key:</b> {secret_key}
+
+- You can start using this pack with /use .
          
 🕑 This message will be deleted after <b>2 minutes</b>.
 """).format(

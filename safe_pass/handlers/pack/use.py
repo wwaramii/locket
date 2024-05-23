@@ -62,7 +62,7 @@ async def use(database: DBBase,
         buttons.append(VIEW_DOCUMENT(document.title, document.id))
         schema.append(1)
     buttons.extend([
-        {"text": "⬅️ Last page", "callback_data": f"pack::use{page-1}"},
+        {"text": "⬅️ Last page", "callback_data": f"pack::use?page={page-1 if (page -1) > 0 else 0}"},
         {"text": "➡️ Next page", "callback_data": f"pack::use?page={page+1}"},
         CANCEL
     ])

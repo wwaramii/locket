@@ -5,7 +5,8 @@ from safe_pass.db import DBBase, DocumentNotFoundError
 from safe_pass.models.base import User
 from safe_pass.keyboards.inline import (InlineConstructor, 
                                         MAIN_MENU, 
-                                        USE_MENU)
+                                        USE_MENU,
+                                        CANCEL)
 from safe_pass import security
 from safe_pass.states.login import Login
 
@@ -20,14 +21,15 @@ You'll gain access to all passwords stored in the pack.
 """)
     
     buttons = [
-        {"text": "🔚 Cancel", "callback_data": "globals::cancel"}
+        CANCEL,
+        MAIN_MENU
     ]
 
     await state.set_state(Login.secret_key)
     
     return {
         "text": m,
-        "reply_markup": InlineConstructor._create_kb(buttons, [1]) 
+        "reply_markup": InlineConstructor._create_kb(buttons, [1, 1]) 
     }
 
 
