@@ -10,3 +10,7 @@ DELETE_NOW = {"text": "❌ Delete Now!",
               "callback_data": "globals::delete_message"}
 CANCEL = {"text": "🔚 Cancel",
           "callback_data": "globals::cancel"}
+VIEW_DOCUMENT = lambda title, _id: {
+            "text": f"• {title}",
+            "callback_data": f"documents::view?id={_id}"
+        }

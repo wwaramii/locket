@@ -4,7 +4,8 @@ from aiogram.fsm.context import FSMContext
 
 from safe_pass.db.base import DBBase
 from safe_pass.keyboards.inline import (InlineConstructor,
-                                        CANCEL)
+                                        CANCEL,
+                                        VIEW_DOCUMENT)
 from safe_pass.models.base import User
 
 from .router import pack_router
@@ -56,10 +57,7 @@ async def use(database: DBBase,
         'document_pack_identifier': user.document_pack.identifier},
         start=page*10,
         end=(page*10) + 10):
-        buttons.append({
-            "text": f"• {document.title}",
-            "callback_data": f"documents::view?id={document.id}"
-        })
+        buttons.append(VIEW_DOCUMENT(document.title, document.id))
         schema.append(1)
     buttons.extend([
         {"text": "⬅️ Last page", "callback_data": f"pack::use{page-1}"},

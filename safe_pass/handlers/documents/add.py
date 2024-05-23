@@ -7,7 +7,7 @@ from safe_pass import security
 from safe_pass.keyboards.inline import (InlineConstructor,
                                         CANCEL,
                                         USE_MENU,
-                                        MAIN_MENU)
+                                        VIEW_DOCUMENT)
 from safe_pass.models.base import User, Document
 from safe_pass.states.add_document import AddDocument
 
@@ -63,10 +63,10 @@ You can try again using /use ."""
     await state.clear()
     # answer
     m = """<b>Password was safely added to the pack🎉</b>
-You can access it threw /use.
+You can access it threw /use or the below button..
 """
     buttons = [
-        MAIN_MENU,
+        VIEW_DOCUMENT(doc.title, doc.id),
         USE_MENU
     ]
     await message.answer(m, reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
