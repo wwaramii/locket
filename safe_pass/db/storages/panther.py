@@ -1,7 +1,7 @@
 from typing import Any, AsyncIterator, Dict
 from pantherdb import PantherDB
 from safe_pass.db.base import DBBase
-from safe_pass.db.exceptions import DocumentNotFoundError, OutrangeStartLimit
+from safe_pass.db.exceptions import DocumentNotFoundError, OutrangeStartLimit, CouldNotDelete
 from safe_pass.models import User, DocumentPack, Document
 
 
@@ -93,3 +93,12 @@ class Panther(DBBase, PantherDB):
             raise OutrangeStartLimit(self, start)
         for doc in docs[start:end]:
             yield Document.model_validate(doc)
+    
+    async def delete_doc(self, query: Dict) -> bool:
+        if query.get('id'):
+            query['_id'] = query.pop('id')
+        
+        result = self.docs_collection.delete_one(**query)
+        if not result:
+            raise CouldNotDelete(self, f"Could not delete document with query {query}")
+        return True

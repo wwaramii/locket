@@ -1,3 +1,3 @@
 from .base import DBBase
-from .exceptions import DocumentNotFoundError, DataBaseBaseException
+from .exceptions import *
 from .storages import Panther

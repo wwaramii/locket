@@ -43,3 +43,7 @@ class DBBase(ABC):
     @abstractmethod
     async def read_many_docs(self, query: Dict, start: int = 0, end: int=-1) -> AsyncIterator[Document]:
         ...
+    
+    @abstractmethod
+    async def delete_doc(self, query: Dict) -> bool:
+        ...
