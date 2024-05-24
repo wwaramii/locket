@@ -8,7 +8,8 @@ from safe_pass.keyboards.inline import (InlineConstructor,
                                         DELETE_NOW,
                                         USE_MENU,
                                         MAIN_MENU,
-                                        NEW_MENU)
+                                        NEW_MENU,
+                                        DELETE_DOCUMENT)
 from safe_pass.models.base import User
 from safe_pass.handlers.globals import utils
 
@@ -26,7 +27,7 @@ Or you can create a  pack for storing your password with  /new .
 """ 
         buttons = [NEW_MENU, USE_MENU]
         schema = [1, 1]
-        await cb.message.edit_text(m, reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
+        await cb.message.edit_text(m, reply_markup=InlineConstructor._create_kb(buttons, schema))
         return
 
     # check it's a valid callback
@@ -51,8 +52,9 @@ Or you can create a  pack for storing your password with  /new .
     title=doc.title,
     fields='\n'.join(fields)
 )
-        buttons = [DELETE_NOW]
-        schema = [1]
+        buttons = [DELETE_NOW,
+                   DELETE_DOCUMENT(doc.title, doc.id)]
+        schema = [1, 1]
         await cb.answer()
         ms = await cb.message.answer(m, reply_markup=InlineConstructor._create_kb(buttons, schema))
         await utils.delete_message(ms, delay=60)
