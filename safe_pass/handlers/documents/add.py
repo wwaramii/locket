@@ -31,6 +31,15 @@ async def start_add(cb: types.CallbackQuery,
 
 @docs_router.message(AddDocument.title, F.text)
 async def set_title(message: types.Message, state: FSMContext):
+    # check for length
+    if len(message.text) > 45:
+        m = """<b>❗ This title is too long(max 45 characters).</b>
+
+1️⃣ Re-enter a <b>shorter</b> password: """
+        buttons = [CANCEL, USE_MENU]
+        await message.answer(m, reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
+        return
+    
     m = """<b>2️⃣ Now enter the password: </b>"""
     buttons = [
         CANCEL
