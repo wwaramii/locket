@@ -2,7 +2,7 @@ from typing import Any, AsyncIterator, Dict
 from pantherdb import PantherDB
 from safe_pass.db.base import DBBase
 from safe_pass.db.exceptions import DocumentNotFoundError, OutrangeStartLimit, CouldNotDelete
-from safe_pass.models import User, DocumentPack, Document
+from safe_pass.models import User, DocumentPack, Document, Statics
 
 
 class Panther(DBBase, PantherDB):
@@ -32,6 +32,7 @@ class Panther(DBBase, PantherDB):
             self.users_collection = self.collection(user_collection)
             self.doc_packs_collection = self.collection(doc_packs_collection)
             self.docs_collection = self.collection(docs_collection)
+            self.statics_collection = self.collection("statics")
             self.__is_initialized = True
 
     async def create_user(self, user: User) -> User:
@@ -102,3 +103,16 @@ class Panther(DBBase, PantherDB):
         if not result:
             raise CouldNotDelete(self, f"Could not delete document with query {query}")
         return True
+
+    async def create_statices(self, statics: Statics, force: bool=True) -> Statics:
+        if (doc:= self.statics_collection.first()) and force:
+            doc = doc.delete()
+                    
+        doc = self.statics_collection.insert_one(**statics.model_dump())
+        return Statics.model_validate(doc)
+    
+    async def read_statics(self) -> Statics | None:
+        doc = self.statics_collection.first()
+        if not doc:
+            return None
+        return Statics.model_validate(doc)
