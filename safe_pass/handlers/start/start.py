@@ -19,7 +19,7 @@ async def start_handler(message: types.Message, state: FSMContext):
 
 
 @start_router.callback_query(F.data == "start::start")
-async def start_handler_kb(cb: types.CallbackQuery, state: FSMContext):
+async def start_handler_kb(cb: types.CallbackQuery, state: FSMContext, **kwargs):
     await state.clear()
     await cb.message.edit_text(**prepare_answer(cb.from_user))
 

@@ -24,8 +24,8 @@ async def ask_for_language(event: types.Message | types.CallbackQuery):
 async def set_language(database: DBBase,
                        user: User,
                        lang: str,
-                       event: types.CallbackQuery):
+                       event: types.CallbackQuery) -> str:
         user.language = Languages(lang.lower())
         await database.update_user({"user_id": user.user_id}, user)
         await event.answer("✅")
-        await event.message.delete()
+        return user.language.value
