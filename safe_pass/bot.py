@@ -43,7 +43,8 @@ def main():
     database = Panther()
     
     # dispatcher middlewares
-    dp.update.middleware(RateLimitMiddleware(limit=10, time_window=60))
+    dp.update.middleware(RateLimitMiddleware(limit=int(config['rate_limit']['LIMIT']), 
+                                             time_window=int(config['rate_limit']['TIME_WINDOW'])))
     dp.update.middleware(DatabaseMiddleware(database))
     dp.update.middleware(CustomI18nMiddleware(i18n))
 
