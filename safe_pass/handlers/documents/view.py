@@ -57,7 +57,10 @@ Or you can create a  pack for storing your password with  /new .
         schema = [1, 1]
         await cb.answer()
         ms = await cb.message.answer(m, reply_markup=InlineConstructor._create_kb(buttons, schema))
-        await utils.delete_message(ms, delay=60)
+        try:
+            await utils.delete_message(ms, delay=60)
+        except:
+            pass
         
     except DocumentNotFoundError:
         # if the doc id is invalid
