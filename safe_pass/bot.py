@@ -9,7 +9,10 @@ from aiogram.utils.i18n import I18n
 
 from safe_pass.config import config
 from safe_pass.db.storages.panther import Panther
-from safe_pass.middlewares import DatabaseMiddleware, CustomI18nMiddleware, LoginRequiredMiddleware
+from safe_pass.middlewares import (DatabaseMiddleware, 
+                                   CustomI18nMiddleware, 
+                                   LoginRequiredMiddleware,
+                                   RateLimitMiddleware)
 
 from safe_pass.handlers import start_router, pack_router, global_router, docs_router
 
@@ -40,6 +43,7 @@ def main():
     database = Panther()
     
     # dispatcher middlewares
+    dp.update.middleware(RateLimitMiddleware(limit=10, time_window=60))
     dp.update.middleware(DatabaseMiddleware(database))
     dp.update.middleware(CustomI18nMiddleware(i18n))
 
