@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import AsyncIterator, Dict
-from safe_pass.models import User, DocumentPack, Document
+from safe_pass.models import User, DocumentPack, Document, Statics
 
 
 class DBBase(ABC):
@@ -46,4 +46,13 @@ class DBBase(ABC):
     
     @abstractmethod
     async def delete_doc(self, query: Dict) -> bool:
+        ...
+    
+    @abstractmethod
+    async def create_statices(self, statics: Statics, force: bool=True) -> Statics:
+        ...
+    
+    @abstractmethod
+    async def read_statics(self) -> Statics:
+        # this will return the first(available statics)
         ...
