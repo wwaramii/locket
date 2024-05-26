@@ -2,7 +2,7 @@ from typing import Any, Awaitable, Callable, Dict
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, Message, CallbackQuery
 
-from safe_pass.keyboards import InlineConstructor
+from safe_pass.keyboards.inline import InlineConstructor, NEW_MENU, USE_MENU
 from safe_pass.db import DBBase
 from safe_pass.models import User
 
@@ -37,8 +37,8 @@ class LoginRequiredMiddleware(BaseMiddleware):
         m = """<b>❗️ You are not logged in!</b>
 With /use you can login and access your passwords."""
         buttons = [
-            {"text": "• New | Create new pack", "callback_data": "pack::new"},
-            {"text": "• Use | Use available pack", "callback_data": "pack::use"},
+            NEW_MENU,
+            USE_MENU,
         ]
         schema = [1, 1]
 
