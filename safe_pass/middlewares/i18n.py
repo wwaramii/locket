@@ -8,6 +8,7 @@ from typing import Any, Awaitable, Callable, Dict
 from .utils import ask_for_language, set_language
 from safe_pass.models import User
 from safe_pass.db import DBBase
+from safe_pass.handlers.start.start import start_handler_kb
 
 class CustomI18nMiddleware(I18nMiddleware):
     async def __call__(
@@ -26,7 +27,7 @@ class CustomI18nMiddleware(I18nMiddleware):
             data[self.middleware_key] = self
 
         with self.i18n.context(), self.i18n.use_locale(current_locale):
-            return await handler(event, data)
+            return await start_handler_kb(event, data)
         
     async def get_locale(self, event: Message | CallbackQuery, 
                          data: Dict[str, Any]) -> str:
