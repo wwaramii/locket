@@ -7,5 +7,5 @@ async def delete_message(message: types.Message,
         await asyncio.sleep(delay)
         await message.delete()
     except Exception as ex:
-        raise ex("Could not delete message!")
+        print(f"[!] Could not delete message after {delay} seconds: {ex}")
     
