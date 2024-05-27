@@ -18,3 +18,7 @@ DELETE_DOCUMENT = lambda title, _id : {
     "text": f"❌ Delete password {title}",
     "callback_data": f"documents::delete?id={_id}"
 }
+GENERATE_PASSWORD = {
+    "text": "🤖 Generate Secure Password",
+    "callback_data": "documents::add::generate_password"   
+}
