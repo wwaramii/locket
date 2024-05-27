@@ -13,5 +13,6 @@ async def logout(cb: types.CallbackQuery, user: User, database: DBBase, state: F
     await state.clear()
     user.document_pack = None
     user.key = None
+    user.last_login = None
     await database.update_user({'user_id': user.user_id}, user)
     await cb.message.edit_text(formatting.BlockQuote("Logged out...").as_html())

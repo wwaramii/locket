@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from typing import Any, Awaitable, Callable, Dict
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, Message, CallbackQuery
@@ -17,12 +18,15 @@ class LoginRequiredMiddleware(BaseMiddleware):
             user: User = data['user']
             database: DBBase = data['database']
         except KeyError:
-            raise KeyError("You should first initialize database middleware.")    
-        
-        if not user.document_pack or not user.key:
+            raise KeyError("You should first initialize database middleware.")
+    
+        if user.document_pack and user.key and self.__check_last_login(user):
+            return await handler(event, data)
+        else:
             # make sure document_pack & key are both none
             user.document_pack = None
             user.key = None
+            user.last_login = None
             await database.update_user({'user_id': user.user_id}, user)
             # send answer to user
             if isinstance(event, Message):
@@ -31,7 +35,14 @@ class LoginRequiredMiddleware(BaseMiddleware):
                 await event.message.edit_text(**self.__prepare_answer())   
             return None
         
-        return await handler(event, data)
+    def __check_last_login(self, user: User) -> bool:
+        """
+        Use user.last_login to check if it's more than 5 minuets ago.
+        If user can stay logged in, return True.
+        """
+        if datetime.now(user.last_login.tzinfo) - user.last_login > timedelta(minutes=5):
+            return False
+        return True
 
     def __prepare_answer(self):
         m = """<b>❗️ You are not logged in!</b>

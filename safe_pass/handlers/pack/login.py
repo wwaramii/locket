@@ -1,3 +1,4 @@
+from datetime import datetime
 from aiogram.fsm.context import FSMContext
 from aiogram import types, F
 
@@ -49,6 +50,7 @@ async def login_with_secret_key(message: types.Message,
         user.key = security.generate_key(doc_pack.identifier,
                                          str(user.user_id),
                                          secret_key)
+        user.last_login = datetime.now()
         await database.update_user(dict(user_id=user.user_id), user)
         m = """<b>You successfully logged in! 🎉</b>
 

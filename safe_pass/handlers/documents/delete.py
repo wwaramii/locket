@@ -13,18 +13,7 @@ from .router import docs_router
 
 @docs_router.callback_query(F.data.startswith("documents::delete?id="))
 async def view_document(cb: types.CallbackQuery, user: User, database: DBBase, state: FSMContext):
-    await state.clear()
-    # check user is logged in
-    if not user.key:
-        m = """<b>❗ You are not logged in!</b>
-You can simply login with /use and access your stored passwords.
-Or you can create a  pack for storing your password with  /new .
-""" 
-        buttons = [NEW_MENU, USE_MENU]
-        schema = [1, 1]
-        await cb.message.edit_text(m, reply_markup=InlineConstructor._create_kb(buttons, schema))
-        return
-    
+    await state.clear()    
     # check it's a valid callback
     doc_id = cb.data.split("id=")[-1] if len(cb.data.split("id=")) != 1 else None
     if not doc_id:
