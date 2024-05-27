@@ -2,7 +2,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram import types, F
 
 from safe_pass.db import DBBase, DocumentNotFoundError
-from safe_pass.models.base import User
+from safe_pass.models import User
 from safe_pass.keyboards.inline import (InlineConstructor, 
                                         MAIN_MENU, 
                                         USE_MENU,

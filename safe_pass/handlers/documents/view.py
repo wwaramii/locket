@@ -10,7 +10,7 @@ from safe_pass.keyboards.inline import (InlineConstructor,
                                         MAIN_MENU,
                                         NEW_MENU,
                                         DELETE_DOCUMENT)
-from safe_pass.models.base import User
+from safe_pass.models import User
 from safe_pass.handlers.globals import utils
 
 from .router import docs_router

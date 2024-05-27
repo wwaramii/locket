@@ -6,7 +6,7 @@ from safe_pass.keyboards.inline import (InlineConstructor,
                                         USE_MENU,
                                         MAIN_MENU,
                                         NEW_MENU)
-from safe_pass.models.base import User
+from safe_pass.models import User
 
 from .router import docs_router
 

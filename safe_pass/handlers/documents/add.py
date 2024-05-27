@@ -8,7 +8,7 @@ from safe_pass.keyboards.inline import (InlineConstructor,
                                         CANCEL,
                                         USE_MENU,
                                         VIEW_DOCUMENT)
-from safe_pass.models.base import User, Document
+from safe_pass.models import User, Document
 from safe_pass.states.add_document import AddDocument
 
 from .router import docs_router

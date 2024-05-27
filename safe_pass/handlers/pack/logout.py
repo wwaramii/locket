@@ -3,7 +3,7 @@ from aiogram.utils import formatting
 from aiogram.fsm.context import FSMContext
 
 from safe_pass.db.base import DBBase
-from safe_pass.models.base import User
+from safe_pass.models import User
 
 from .router import pack_router
 

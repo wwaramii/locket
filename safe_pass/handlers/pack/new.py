@@ -8,7 +8,7 @@ from aiogram.fsm.context import FSMContext
 from safe_pass.db import DBBase, DocumentNotFoundError
 from safe_pass.keyboards.inline import (InlineConstructor,
                                         DELETE_NOW)
-from safe_pass.models.base import User, DocumentPack
+from safe_pass.models import User, DocumentPack
 from safe_pass import security
 from safe_pass.handlers.globals import utils
 

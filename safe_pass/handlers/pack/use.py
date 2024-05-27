@@ -6,7 +6,7 @@ from safe_pass.db.base import DBBase
 from safe_pass.keyboards.inline import (InlineConstructor,
                                         CANCEL,
                                         VIEW_DOCUMENT)
-from safe_pass.models.base import User
+from safe_pass.models import User
 
 from .router import pack_router
 from .login import start_login
