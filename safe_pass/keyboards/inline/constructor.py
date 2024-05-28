@@ -1,3 +1,4 @@
+from babel.support import LazyProxy
 from types import MappingProxyType
 from typing import TypeVar, Union, List, Dict
 
@@ -54,6 +55,8 @@ class InlineConstructor:
                 data["pay"] = a["pay"]
             if len(data) != InlineConstructor.properties_amount:
                 raise ValueError("Insufficient data to create a button")
+            if isinstance(data['text'], LazyProxy):
+                data['text'] = data['text'].value
             btns.append(InlineKeyboardButton(**data))
         
         kb = InlineKeyboardMarkup(inline_keyboard=create_keyboard_layout(btns, schema))

@@ -16,12 +16,14 @@ from safe_pass.states.add_document import AddDocument
 from .router import docs_router
 from .utils import generate_password
 
+from aiogram.utils.i18n import gettext as _
+
 
 @docs_router.callback_query(F.data=="documents::add")
 async def start_add(cb: types.CallbackQuery, 
                     state: FSMContext,
                     user: User):
-    m = """<b>1️⃣ Please enter a title for the password: </b>"""
+    m = _("""<b>1️⃣ Please enter a title for the password: </b>""")
     buttons = [
         CANCEL,
         USE_MENU
@@ -36,14 +38,14 @@ async def start_add(cb: types.CallbackQuery,
 async def set_title(message: types.Message, state: FSMContext):
     # check for length
     if len(message.text) > 45:
-        m = """<b>❗ This title is too long(max 45 characters).</b>
+        m = _("""<b>❗ This title is too long(max 45 characters).</b>
 
-1️⃣ Re-enter a <b>shorter</b> password: """
+1️⃣ Re-enter a <b>shorter</b> password: """)
         buttons = [CANCEL, USE_MENU]
         await message.answer(m, reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
         return
     
-    m = """<b>2️⃣ Now enter the password: </b>"""
+    m = _("""<b>2️⃣ Now enter the password: </b>""")
     buttons = [
         GENERATE_PASSWORD,
         CANCEL
@@ -79,8 +81,8 @@ async def set_data(fsm_data: Dict,
                    user: User, 
                    database: DBBase):
     if not fsm_data.get('title') or not fsm_data.get('document_pack_identifier'):
-        m = """ <b>😞 Something went wrong!</b>
-You can try again using /use ."""     
+        m = _(""" <b>😞 Something went wrong!</b>
+You can try again using /use .""")    
         buttons = [CANCEL]
         schema = [1]
     else:        
@@ -93,9 +95,9 @@ You can try again using /use ."""
                     encrypted_data=data)
         doc = await database.create_document(doc)
         # answer
-        m = """<b>Password was safely added to the pack🎉</b>
+        m = _("""<b>Password was safely added to the pack🎉</b>
 You can access it threw /use or the below button..
-    """
+    """)
         buttons = [
             VIEW_DOCUMENT(doc.title, doc.id),
             USE_MENU

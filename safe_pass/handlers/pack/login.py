@@ -13,9 +13,11 @@ from safe_pass.states.login import Login
 
 from .router import pack_router
 
+from aiogram.utils.i18n import gettext as _
+
 
 async def start_login(state: FSMContext):
-    m = ("""<b>🔐 To access a document pack, please enter its secret key.</b>
+    m = _("""<b>🔐 To access a document pack, please enter its secret key.</b>
 You'll gain access to all passwords stored in the pack.
 
 <b>Enter the secret phrase:</b>
@@ -52,11 +54,11 @@ async def login_with_secret_key(message: types.Message,
                                          secret_key)
         user.last_login = datetime.now()
         await database.update_user(dict(user_id=user.user_id), user)
-        m = """<b>You successfully logged in! 🎉</b>
+        m = _("""<b>You successfully logged in! 🎉</b>
 
 You can now access all passwords stored in this pack with /use. <b>You will stay logged in for 5 minutes.</b>
 
-<b>🔒 Enjoy your secure experience!</b>"""
+<b>🔒 Enjoy your secure experience!</b>""")
         buttons = [
             MAIN_MENU,
             USE_MENU

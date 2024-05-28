@@ -11,6 +11,8 @@ from safe_pass.keyboards.inline import (NEW_MENU,
 
 from .router import start_router
 
+from aiogram.utils.i18n import gettext as _
+
 
 @start_router.message(CommandStart())
 async def start_handler(message: types.Message, state: FSMContext):
@@ -25,7 +27,7 @@ async def start_handler_kb(cb: types.CallbackQuery, state: FSMContext, **kwargs)
 
 
 def prepare_answer(user: types.User):
-    m = ("""Welcome {name}👋!
+    m = _("""Welcome {name}👋!
 <b>🔒 This is a secure and fast password manager bot. It's easy to use and keeps your data safe.</b>
 
 🪄 Commands:
