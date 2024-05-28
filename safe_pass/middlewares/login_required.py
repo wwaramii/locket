@@ -7,6 +7,8 @@ from safe_pass.keyboards.inline import InlineConstructor, NEW_MENU, USE_MENU
 from safe_pass.db import DBBase
 from safe_pass.models import User
 
+from aiogram.utils.i18n import gettext as _
+
 
 class LoginRequiredMiddleware(BaseMiddleware):
     async def __call__(self, 
@@ -45,8 +47,8 @@ class LoginRequiredMiddleware(BaseMiddleware):
         return True
 
     def __prepare_answer(self):
-        m = """<b>❗️ You are not logged in!</b>
-With /use you can login and access your passwords."""
+        m = _("""<b>❗️ You are not logged in!</b>
+With /use you can login and access your passwords.""")
         buttons = [
             NEW_MENU,
             USE_MENU,

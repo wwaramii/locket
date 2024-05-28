@@ -4,6 +4,8 @@ from typing import Any, Awaitable, Callable, Dict
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, Update
 
+from aiogram.utils.i18n import gettext as _
+
 
 class RateLimitMiddleware(BaseMiddleware):
     def __init__(self, limit: int=100, time_window: int=60) -> None:
@@ -28,11 +30,11 @@ class RateLimitMiddleware(BaseMiddleware):
         
         # Check if user is over the limit
         if len(self.user_requests[user_id]) >= self.limit:
-            m = """<b>⛔️ Too many requests!</b>
+            m = ("""<b>⛔️ Too many requests!</b>
 You might have to <b>wait a minute</b> to start using it again.
 
 <b>🌟 You can get /vip account for no limitations. </b>
-"""         
+""")       
             await event.bot.send_message(chat_id=event.event.from_user.id,
                                          text=m)
             self.user_requests[user_id].append(current_time)
