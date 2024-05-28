@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Locket 1.0.0\n"
 "Report-Msgid-Bugs-To: wwaramii@gmail.com\n"
-"POT-Creation-Date: 2024-05-28 19:27+0330\n"
+"POT-Creation-Date: 2024-05-28 22:51+0330\n"
 "PO-Revision-Date: 2024-05-28 18:50+0330\n"
 "Last-Translator: Aram Khezri wwaramii@gmail.com\n"
 "Language: fa\n"
@@ -67,11 +67,15 @@ msgstr ""
 "پیدا کنید.\n"
 "یا می‌توانید با /new یک بسته برای ذخیره رمز عبور ایجاد کنید."
 
-#: safe_pass/handlers/documents/delete.py:47
+#: safe_pass/handlers/documents/delete.py:38
+msgid "<b>✅ Your password </b><i>{title}</i> <b>was successfully deleted.</b>"
+msgstr "<b>✅ پسورد شما </b><i>{title}</i> <b>با موفقیت حذف شد.</b>"
+
+#: safe_pass/handlers/documents/delete.py:49
 msgid "<b>❗ We wasn't able to delete your password.</b>"
 msgstr "<b>❗ ما نتوانستیم رمز عبور شما را حذف کنیم.</b>"
 
-#: safe_pass/handlers/documents/delete.py:54
+#: safe_pass/handlers/documents/delete.py:56
 #: safe_pass/handlers/documents/view.py:65
 msgid ""
 "<b>🤔 Something was'nt right.</b>\n"
@@ -133,6 +137,10 @@ msgstr ""
 "\n"
 "<b>🔒 از تجربه امن خود لذت ببرید!</b>"
 
+#: safe_pass/handlers/pack/login.py:69
+msgid "<b>❗️ Invalid secret key. Please try again /use.</b>"
+msgstr "❗️ کلید محرمانه معتبر نیست. لطفا دوباره تلاش کنید /use."
+
 #: safe_pass/handlers/pack/logout.py:20
 msgid "Logged out..."
 msgstr "خارج شدید..."
@@ -186,6 +194,14 @@ msgstr "➕ افزودن رمز عبور"
 #: safe_pass/handlers/pack/use.py:56
 msgid "🚪 Logout"
 msgstr "🚪 خروج"
+
+#: safe_pass/handlers/pack/use.py:67
+msgid "⬅️ Last page"
+msgstr "صفحه قبل ⬅️"
+
+#: safe_pass/handlers/pack/use.py:68
+msgid "➡️ Next page"
+msgstr "➡️ صفحه بعد"
 
 #: safe_pass/handlers/start/start.py:30
 msgid ""

@@ -66,5 +66,5 @@ You can now access all passwords stored in this pack with /use. <b>You will stay
         await message.answer(m,
                              reply_markup=InlineConstructor._create_kb(buttons, [1, 1]))
     except DocumentNotFoundError:
-        m = """<b>❗️ Invalid secret key. Please try again /use.</b>"""
+        m = _("""<b>❗️ Invalid secret key. Please try again /use.</b>""")
         await message.answer(m)

@@ -35,7 +35,9 @@ Or you can create a  pack for storing your password with  /new .""")
 
         # delete
         await database.delete_doc({'id': doc_id})
-        m = _(f"""<b>✅ Your password </b><i>{doc.title}</i> <b>was successfully deleted.</b>""")
+        m = _("""<b>✅ Your password </b><i>{title}</i> <b>was successfully deleted.</b>""").format(
+            title=doc.title
+        )
         buttons = [MAIN_MENU]
         schema = [1]
         await cb.answer()

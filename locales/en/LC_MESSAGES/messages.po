@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Locket 1.0.0\n"
 "Report-Msgid-Bugs-To: wwaramii@gmail.com\n"
-"POT-Creation-Date: 2024-05-28 19:27+0330\n"
+"POT-Creation-Date: 2024-05-28 22:51+0330\n"
 "PO-Revision-Date: 2024-05-28 18:49+0330\n"
 "Last-Translator: Aram Khezri wwaramii@gmail.com\n"
 "Language: en\n"
@@ -54,11 +54,15 @@ msgid ""
 "Or you can create a  pack for storing your password with  /new ."
 msgstr ""
 
-#: safe_pass/handlers/documents/delete.py:47
+#: safe_pass/handlers/documents/delete.py:38
+msgid "<b>✅ Your password </b><i>{title}</i> <b>was successfully deleted.</b>"
+msgstr ""
+
+#: safe_pass/handlers/documents/delete.py:49
 msgid "<b>❗ We wasn't able to delete your password.</b>"
 msgstr ""
 
-#: safe_pass/handlers/documents/delete.py:54
+#: safe_pass/handlers/documents/delete.py:56
 #: safe_pass/handlers/documents/view.py:65
 msgid ""
 "<b>🤔 Something was'nt right.</b>\n"
@@ -101,6 +105,10 @@ msgid ""
 "<b>🔒 Enjoy your secure experience!</b>"
 msgstr ""
 
+#: safe_pass/handlers/pack/login.py:69
+msgid "<b>❗️ Invalid secret key. Please try again /use.</b>"
+msgstr ""
+
 #: safe_pass/handlers/pack/logout.py:20
 msgid "Logged out..."
 msgstr ""
@@ -136,6 +144,14 @@ msgstr ""
 
 #: safe_pass/handlers/pack/use.py:56
 msgid "🚪 Logout"
+msgstr ""
+
+#: safe_pass/handlers/pack/use.py:67
+msgid "⬅️ Last page"
+msgstr ""
+
+#: safe_pass/handlers/pack/use.py:68
+msgid "➡️ Next page"
 msgstr ""
 
 #: safe_pass/handlers/start/start.py:30
@@ -175,11 +191,7 @@ msgstr ""
 msgid "🔚 Cancel"
 msgstr ""
 
-#: safe_pass/keyboards/inline/buttons.py:24
-msgid "❌ Delete password {title}"
-msgstr ""
-
-#: safe_pass/keyboards/inline/buttons.py:28
+#: safe_pass/keyboards/inline/buttons.py:26
 msgid "🤖 Generate Secure Password"
 msgstr ""
 
@@ -188,4 +200,7 @@ msgid ""
 "<b>❗️ You are not logged in!</b>\n"
 "With /use you can login and access your passwords."
 msgstr ""
+
+#~ msgid "❌ Delete password {title}"
+#~ msgstr ""
 

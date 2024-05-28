@@ -31,7 +31,7 @@ def main():
     # use proxy
     session = None
     if config['proxy']['address']:
-        session = AiohttpSession(proxy=config['proxy']['address'])
+        session = AiohttpSession(proxy=config['proxy']['ADDRESS'])
     
     # initialize bot
     bot = Bot(token=config["bot"]["TOKEN"],
@@ -40,7 +40,7 @@ def main():
     dp = Dispatcher()
 
     # initialize database
-    database = Panther()
+    database = Panther(db_name=config['database']['ADDRESS'])
     
     # dispatcher middlewares
     dp.update.middleware(RateLimitMiddleware(limit=int(config['rate_limit']['LIMIT']), 
