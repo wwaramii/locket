@@ -1,0 +1,249 @@
+# Russian translations for Locket.
+# Copyright (C) 2024 Aram Khezri
+# This file is distributed under the same license as the Locket project.
+# FIRST AUTHOR wwaramii@gmail.com, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Locket 1.0.0\n"
+"Report-Msgid-Bugs-To: wwaramii@gmail.com\n"
+"POT-Creation-Date: 2024-05-28 19:27+0330\n"
+"PO-Revision-Date: 2024-05-28 19:53+0330\n"
+"Last-Translator: Aram Khezri wwaramii@gmail.com\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: safe_pass/handlers/documents/add.py:26
+msgid "<b>1️⃣ Please enter a title for the password: </b>"
+msgstr "<b>1️⃣ Пожалуйста, введите заголовок для пароля: </b>"
+
+#: safe_pass/handlers/documents/add.py:41
+msgid ""
+"<b>❗ This title is too long(max 45 characters).</b>\n"
+"\n"
+"1️⃣ Re-enter a <b>shorter</b> password: "
+msgstr ""
+"<b>❗ Этот заголовок слишком длинный (максимум 45 символов).</b>\n"
+"\n"
+"1️⃣ Введите <b>более короткий</b> заголовок: "
+
+#: safe_pass/handlers/documents/add.py:48
+msgid "<b>2️⃣ Now enter the password: </b>"
+msgstr "<b>2️⃣ Теперь введите пароль: </b>"
+
+#: safe_pass/handlers/documents/add.py:84
+msgid ""
+" <b>😞 Something went wrong!</b>\n"
+"You can try again using /use ."
+msgstr ""
+"<b>😞 Что-то пошло не так!</b>\n"
+"Вы можете попробовать снова, используя /use ."
+
+#: safe_pass/handlers/documents/add.py:98
+msgid ""
+"<b>Password was safely added to the pack🎉</b>\n"
+"You can access it threw /use or the below button..\n"
+"    "
+msgstr ""
+"<b>Пароль успешно добавлен в пакет🎉</b>\n"
+"Вы можете получить к нему доступ через /use или кнопку ниже..\n"
+"    "
+
+#: safe_pass/handlers/documents/delete.py:28
+msgid ""
+"<b>❗ You are not logged in or you don't have access to this password.</b>"
+"\n"
+"You can simply login with /use and access your stored passwords.\n"
+"Or you can create a  pack for storing your password with  /new ."
+msgstr ""
+"<b>❗ Вы не вошли в систему или у вас нет доступа к этому паролю.</b>"
+"\n"
+"Вы можете просто войти с помощью /use и получить доступ к вашим сохраненным паролям.\n"
+"Или вы можете создать пакет для хранения вашего пароля с помощью  /new ."
+
+#: safe_pass/handlers/documents/delete.py:47
+msgid "<b>❗ We wasn't able to delete your password.</b>"
+msgstr "<b>❗ Мы не смогли удалить ваш пароль.</b>"
+
+#: safe_pass/handlers/documents/delete.py:54
+#: safe_pass/handlers/documents/view.py:65
+msgid ""
+"<b>🤔 Something was'nt right.</b>\n"
+"Logout with /use and re-login to fix the issue or contact support."
+msgstr ""
+"<b>🤔 Что-то пошло не так.</b>\n"
+"Выйдите из системы с помощью /use и снова войдите, чтобы исправить проблему, или свяжитесь с поддержкой."
+
+#: safe_pass/handlers/documents/view.py:37
+msgid ""
+"<b>🔑 Your stored password:</b>\n"
+"             \n"
+"<b>📌 Title:</b> {title}\n"
+"{fields}\n"
+"\n"
+"🕑 This message will be deleted after <b>1 minute</b>."
+msgstr ""
+"<b>🔑 Ваш сохраненный пароль:</b>\n"
+"             \n"
+"<b>📌 Заголовок:</b> {title}\n"
+"{fields}\n"
+"\n"
+"🕑 Это сообщение будет удалено через <b>1 минуту</b>."
+
+#: safe_pass/handlers/documents/view.py:58
+msgid "<b>❗ Try accessing your password threw /use.</b>"
+msgstr "<b>❗ Попробуйте получить доступ к вашему паролю через /use.</b>"
+
+#: safe_pass/handlers/globals/cancel.py:12
+msgid "Operation canceled..."
+msgstr "Операция отменена..."
+
+#: safe_pass/handlers/pack/login.py:20
+msgid ""
+"<b>🔐 To access a document pack, please enter its secret key.</b>\n"
+"You'll gain access to all passwords stored in the pack.\n"
+"\n"
+"<b>Enter the secret phrase:</b>\n"
+msgstr ""
+"<b>🔐 Для доступа к пакету документов введите его секретный ключ.</b>\n"
+"Вы получите доступ ко всем паролям, хранящимся в пакете.\n"
+"\n"
+"<b>Введите секретную фразу:</b>\n"
+
+#: safe_pass/handlers/pack/login.py:57
+msgid ""
+"<b>You successfully logged in! 🎉</b>\n"
+"\n"
+"You can now access all passwords stored in this pack with /use. <b>You "
+"will stay logged in for 5 minutes.</b>\n"
+"\n"
+"<b>🔒 Enjoy your secure experience!</b>"
+msgstr ""
+"<b>Вы успешно вошли в систему! 🎉</b>\n"
+"\n"
+"Теперь вы можете получить доступ ко всем паролям, хранящимся в этом пакете, с помощью /use. <b>Вы останетесь в системе в течение 5 минут.</b>\n"
+"\n"
+"<b>🔒 Наслаждайтесь безопасным опытом!</b>"
+
+#: safe_pass/handlers/pack/logout.py:20
+msgid "Logged out..."
+msgstr "Выход выполнен..."
+
+#: safe_pass/handlers/pack/new.py:57
+msgid ""
+"<b>Pack created! 🎉</b>\n"
+"\n"
+"You can now store your passwords securely. Remember to keep your secret "
+"key safe, as it's the only way to access your pack. <b>Without it, your "
+"passwords are lost.</b>\n"
+"\n"
+"⛔️ <b>Secret key:</b> {secret_key}\n"
+"\n"
+"- You can start using this pack with /use .\n"
+"         \n"
+"🕑 This message will be deleted after <b>2 minutes</b>.\n"
+msgstr ""
+"<b>Пакет создан! 🎉</b>\n"
+"\n"
+"Теперь вы можете безопасно хранить свои пароли. Помните, что важно хранить ваш секретный ключ в безопасности, так как это единственный способ получить доступ к вашему пакету. <b>Без него ваши пароли будут потеряны.</b>\n"
+"\n"
+"⛔️ <b>Секретный ключ:</b> {secret_key}\n"
+"\n"
+"- Вы можете начать использовать этот пакет с помощью /use .\n"
+"         \n"
+"🕑 Это сообщение будет удалено через <b>2 минуты</b>.\n"
+
+#: safe_pass/handlers/pack/use.py:48
+msgid ""
+"<b>🔓 You are logged in and have access to your passwords.</b>\n"
+"- You will stay logged in for 5 minutes.\n"
+"- You can logout and access other packs.\n"
+"\n"
+"<b>📌 All passwords in this pack are listed.</b> You can access each one "
+"by tapping it:"
+msgstr ""
+"<b>🔓 Вы вошли в систему и имеете доступ к своим паролям.</b>\n"
+"- Вы останетесь в системе в течение 5 минут.\n"
+"- Вы можете выйти из системы и получить доступ к другим пакетам.\n"
+"\n"
+"<b>📌 Все пароли в этом пакете перечислены.</b> Вы можете получить доступ к каждому из них, нажав на него:"
+
+#: safe_pass/handlers/pack/use.py:55
+msgid "➕ Add password"
+msgstr "➕ Добавить пароль"
+
+#: safe_pass/handlers/pack/use.py:56
+msgid "🚪 Logout"
+msgstr "🚪 Выйти"
+
+#: safe_pass/handlers/pack/use.py:56
+msgid "🚪 Logout"
+msgstr "🚪 خروج"
+
+#: safe_pass/handlers/start/start.py:30
+msgid ""
+"Welcome {name}👋!\n"
+"<b>🔒 This is a secure and fast password manager bot. It's easy to use and"
+" keeps your data safe.</b>\n"
+"\n"
+"🪄 Commands:\n"
+"/start - Main menu\n"
+"/new - Create a new document pack\n"
+"/use - Use an existing document pack\n"
+"/info - Get info about how the bot works\n"
+msgstr ""
+"Добро пожаловать, {name}👋!\n"
+"<b>🔒 Это безопасный и быстрый бот для управления паролями. Он прост в использовании и "
+"обеспечивает безопасность ваших данных.</b>\n"
+"\n"
+"🪄 Команды:\n"
+"/start - Главное меню\n"
+"/new - Создать новый пакет документов\n"
+"/use - Использовать существующий пакет документов\n"
+"/info - Получить информацию о работе бота\n"
+
+#: safe_pass/keyboards/inline/buttons.py:5
+msgid "• Main menu | Bot main menu"
+msgstr "• Главное меню | Главное меню бота"
+
+#: safe_pass/keyboards/inline/buttons.py:7
+msgid "• New | Create new pack"
+msgstr "• Новый | Создать новый пакет"
+
+#: safe_pass/keyboards/inline/buttons.py:9
+msgid "• Use | Use an available pack"
+msgstr "• Использовать | Использовать доступный пакет"
+
+#: safe_pass/keyboards/inline/buttons.py:11
+msgid "• Info | How am I safe here?"
+msgstr "• Информация | Как я защищен здесь?"
+
+#: safe_pass/keyboards/inline/buttons.py:13
+msgid "❌ Delete Message Now!"
+msgstr "❌ Удалить сообщение сейчас!"
+
+#: safe_pass/keyboards/inline/buttons.py:15
+msgid "🔚 Cancel"
+msgstr "🔚 Отмена"
+
+#: safe_pass/keyboards/inline/buttons.py:24
+msgid "❌ Delete password {title}"
+msgstr "❌ Удалить пароль {title}"
+
+#: safe_pass/keyboards/inline/buttons.py:28
+msgid "🤖 Generate Secure Password"
+msgstr "🤖 Сгенерировать безопасный пароль"
+
+#: safe_pass/middlewares/login_required.py:50
+msgid ""
+"<b>❗️ You are not logged in!</b>\n"
+"With /use you can login and access your passwords."
+msgstr ""
+"<b>❗️ Вы не вошли в систему!</b>\n"
+"С помощью /use вы можете войти в систему и получить доступ к своим паролям."
