@@ -1,3 +1,4 @@
+from babel.support import LazyProxy
 from collections.abc import Sequence
 from types import MappingProxyType
 from typing import Union, Dict
@@ -51,6 +52,8 @@ class ReplyConstructor:
                         break
             if len(data) != ReplyConstructor.properties_amount:
                 raise ValueError("Insufficient data to create a button")
+            if isinstance(data['text'], LazyProxy):
+                data['text'] = data['text'].value
             btns.append(KeyboardButton(**data))
         
         kb = ReplyKeyboardMarkup(
