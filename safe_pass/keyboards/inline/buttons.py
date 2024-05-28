@@ -1,4 +1,5 @@
 from aiogram.utils.i18n import lazy_gettext as _
+from aiogram.utils.i18n import gettext as __
 
 
 MAIN_MENU = {"text": _("• Main menu | Bot main menu"), 
@@ -18,7 +19,7 @@ VIEW_DOCUMENT = lambda title, _id: {
             "callback_data": f"documents::view?id={_id}"
         }
 DELETE_DOCUMENT = lambda title, _id : {
-    "text": _(f"❌ Delete password {title}"),
+    "text": __("❌ Delete password {title}").format(title=title),
     "callback_data": f"documents::delete?id={_id}"
 }
 GENERATE_PASSWORD = {
