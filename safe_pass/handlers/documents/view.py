@@ -15,6 +15,8 @@ from safe_pass.handlers.globals import utils
 
 from .router import docs_router
 
+from aiogram.utils.i18n import gettext as _
+
 
 @docs_router.callback_query(F.data.startswith("documents::view?id="))
 async def view_document(cb: types.CallbackQuery, user: User, database: DBBase, state: FSMContext):
@@ -32,7 +34,7 @@ async def view_document(cb: types.CallbackQuery, user: User, database: DBBase, s
         data: dict = json.loads(data)
 
         fields = [f"<b>{key.title()}:</b> <code>{value}</code>" for key, value in data.items()]
-        m = ("""<b>🔑 Your stored password:</b>
+        m = _("""<b>🔑 Your stored password:</b>
              
 <b>📌 Title:</b> {title}
 {fields}
@@ -53,15 +55,15 @@ async def view_document(cb: types.CallbackQuery, user: User, database: DBBase, s
         
     except DocumentNotFoundError:
         # if the doc id is invalid
-        m = """<b>❗ Try accessing your password threw /use.</b>"""
+        m = _("""<b>❗ Try accessing your password threw /use.</b>""")
         buttons = [MAIN_MENU, USE_MENU]
         schema = [1, 1]
         await cb.message.edit_text(m, reply_markup=InlineConstructor._create_kb(buttons, schema))
 
     except Exception as ex:
         # if the doc id is invalid
-        m = """<b>🤔 Something was'nt right.</b>
-Logout with /use and re-login to fix the issue or contact support."""
+        m = _("""<b>🤔 Something was'nt right.</b>
+Logout with /use and re-login to fix the issue or contact support.""")
         buttons = [MAIN_MENU, USE_MENU]
         schema = [1, 1]
         await cb.message.edit_text(m, reply_markup=InlineConstructor._create_kb(buttons, schema))

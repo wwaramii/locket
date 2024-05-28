@@ -11,6 +11,8 @@ from safe_pass.models import User
 from .router import pack_router
 from .login import start_login
 
+from aiogram.utils.i18n import gettext as _
+
 
 @pack_router.message(Command("use"))
 async def use_command(message: types.Message, 
@@ -43,15 +45,15 @@ async def use(database: DBBase,
     if not user.document_pack:
         return await start_login(state)
     
-    m = """<b>🔓 You are logged in and have access to your passwords.</b>
+    m = _("""<b>🔓 You are logged in and have access to your passwords.</b>
 - You will stay logged in for 5 minutes.
 - You can logout and access other packs.
 
-<b>📌 All passwords in this pack are listed.</b> You can access each one by tapping it:"""
+<b>📌 All passwords in this pack are listed.</b> You can access each one by tapping it:""")
     # prepare buttons
     buttons = [
-        {"text": "➕ Add password", "callback_data": "documents::add"},
-        {"text": "🚪 Logout", "callback_data": "pack::logout"}
+        {"text": _("➕ Add password"), "callback_data": "documents::add"},
+        {"text": _("🚪 Logout"), "callback_data": "pack::logout"}
     ]
     schema = [2]
     

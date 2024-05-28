@@ -14,6 +14,8 @@ from safe_pass.handlers.globals import utils
 
 from .router import pack_router
 
+from aiogram.utils.i18n import gettext as _
+
 
 @pack_router.message(Command("new"))
 async def new_command(message: types.Message, database: DBBase, user: User, state: FSMContext):
@@ -52,7 +54,7 @@ async def create_pack(user: User, database: DBBase) -> str:
 
 
 def prepare_answer(secret_key: str) -> Dict:
-    m = ("""<b>Pack created! 🎉</b>
+    m = _("""<b>Pack created! 🎉</b>
 
 You can now store your passwords securely. Remember to keep your secret key safe, as it's the only way to access your pack. <b>Without it, your passwords are lost.</b>
 
