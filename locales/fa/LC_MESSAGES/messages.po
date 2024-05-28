@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Locket 1.0.0\n"
 "Report-Msgid-Bugs-To: wwaramii@gmail.com\n"
-"POT-Creation-Date: 2024-05-28 22:51+0330\n"
+"POT-Creation-Date: 2024-05-28 23:04+0330\n"
 "PO-Revision-Date: 2024-05-28 18:50+0330\n"
 "Last-Translator: Aram Khezri wwaramii@gmail.com\n"
 "Language: fa\n"
@@ -225,35 +225,35 @@ msgstr ""
 "/use - استفاده از یک بسته موجود\n"
 "/info - دریافت اطلاعات در مورد نحوه کار ربات\n"
 
-#: safe_pass/keyboards/inline/buttons.py:5
+#: safe_pass/keyboards/inline/buttons.py:4
 msgid "• Main menu | Bot main menu"
 msgstr "• منوی اصلی | منوی اصلی ربات"
 
-#: safe_pass/keyboards/inline/buttons.py:7
+#: safe_pass/keyboards/inline/buttons.py:6
 msgid "• New | Create new pack"
 msgstr "• جدید | ایجاد یک بسته جدید"
 
-#: safe_pass/keyboards/inline/buttons.py:9
+#: safe_pass/keyboards/inline/buttons.py:8
 msgid "• Use | Use an available pack"
 msgstr "• استفاده | استفاده از یک بسته موجود"
 
-#: safe_pass/keyboards/inline/buttons.py:11
+#: safe_pass/keyboards/inline/buttons.py:10
 msgid "• Info | How am I safe here?"
 msgstr "• راهنمایی | چگونه در اینجا ایمن هستم؟"
 
-#: safe_pass/keyboards/inline/buttons.py:13
+#: safe_pass/keyboards/inline/buttons.py:12
 msgid "❌ Delete Message Now!"
 msgstr "❌ پیام را الان حذف کن!"
 
-#: safe_pass/keyboards/inline/buttons.py:15
+#: safe_pass/keyboards/inline/buttons.py:14
 msgid "🔚 Cancel"
 msgstr "🔚 لغو"
 
-#: safe_pass/keyboards/inline/buttons.py:24
+#: safe_pass/keyboards/inline/buttons.py:21
 msgid "❌ Delete password {title}"
 msgstr "❌ حذف رمز عبور {title}"
 
-#: safe_pass/keyboards/inline/buttons.py:28
+#: safe_pass/keyboards/inline/buttons.py:27
 msgid "🤖 Generate Secure Password"
 msgstr "🤖 تولید رمز عبور امن"
 

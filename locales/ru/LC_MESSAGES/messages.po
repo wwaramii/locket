@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Locket 1.0.0\n"
 "Report-Msgid-Bugs-To: wwaramii@gmail.com\n"
-"POT-Creation-Date: 2024-05-28 22:51+0330\n"
+"POT-Creation-Date: 2024-05-28 23:04+0330\n"
 "PO-Revision-Date: 2024-05-28 19:53+0330\n"
 "Last-Translator: Aram Khezri wwaramii@gmail.com\n"
 "Language: ru\n"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: safe_pass/handlers/documents/delete.py:38
 msgid "<b>✅ Your password </b><i>{title}</i> <b>was successfully deleted.</b>"
-msgstr ""
+msgstr "<b>✅ Ваш пароль </b><i>{title}</i> <b>был успешно удален.</b>"
 
 #: safe_pass/handlers/documents/delete.py:49
 msgid "<b>❗ We wasn't able to delete your password.</b>"
@@ -227,35 +227,35 @@ msgstr ""
 "/use - Использовать существующий пакет документов\n"
 "/info - Получить информацию о работе бота\n"
 
-#: safe_pass/keyboards/inline/buttons.py:5
+#: safe_pass/keyboards/inline/buttons.py:4
 msgid "• Main menu | Bot main menu"
 msgstr "• Главное меню | Главное меню бота"
 
-#: safe_pass/keyboards/inline/buttons.py:7
+#: safe_pass/keyboards/inline/buttons.py:6
 msgid "• New | Create new pack"
 msgstr "• Новый | Создать новый пакет"
 
-#: safe_pass/keyboards/inline/buttons.py:9
+#: safe_pass/keyboards/inline/buttons.py:8
 msgid "• Use | Use an available pack"
 msgstr "• Использовать | Использовать доступный пакет"
 
-#: safe_pass/keyboards/inline/buttons.py:11
+#: safe_pass/keyboards/inline/buttons.py:10
 msgid "• Info | How am I safe here?"
 msgstr "• Информация | Как я защищен здесь?"
 
-#: safe_pass/keyboards/inline/buttons.py:13
+#: safe_pass/keyboards/inline/buttons.py:12
 msgid "❌ Delete Message Now!"
 msgstr "❌ Удалить сообщение сейчас!"
 
-#: safe_pass/keyboards/inline/buttons.py:15
+#: safe_pass/keyboards/inline/buttons.py:14
 msgid "🔚 Cancel"
 msgstr "🔚 Отмена"
 
-#: safe_pass/keyboards/inline/buttons.py:24
+#: safe_pass/keyboards/inline/buttons.py:21
 msgid "❌ Delete password {title}"
 msgstr "❌ Удалить пароль {title}"
 
-#: safe_pass/keyboards/inline/buttons.py:28
+#: safe_pass/keyboards/inline/buttons.py:27
 msgid "🤖 Generate Secure Password"
 msgstr "🤖 Сгенерировать безопасный пароль"
 
@@ -267,3 +267,4 @@ msgstr ""
 "<b>❗️ Вы не вошли в систему!</b>\n"
 "С помощью /use вы можете войти в систему и получить доступ к своим "
 "паролям."
+

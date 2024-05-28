@@ -1,5 +1,4 @@
 from aiogram.utils.i18n import lazy_gettext as _
-from aiogram.utils.i18n import gettext as __
 
 
 MAIN_MENU = {"text": _("• Main menu | Bot main menu"), 
@@ -18,8 +17,10 @@ VIEW_DOCUMENT = lambda title, _id: {
             "text": f"• {title}",
             "callback_data": f"documents::view?id={_id}"
         }
+
+__delete_password_text = _("❌ Delete password {title}") # not doing this will cause babel to not know this texts within the lambda function. And I do not have time to find a better way.
 DELETE_DOCUMENT = lambda title, _id : {
-    "text": __("❌ Delete password {title}").format(title=title),
+    "text": __delete_password_text.format(title=title),
     "callback_data": f"documents::delete?id={_id}"
 }
 GENERATE_PASSWORD = {
