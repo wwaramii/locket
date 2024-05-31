@@ -59,7 +59,4 @@ poetry run safe_pass
   - [ ] Sending alerts, updates
 - [ ] Add MongoDB database
 - [ ] Add static images to menus
-
-
-  
-  
+- [ ] Change language
