@@ -30,11 +30,7 @@ class RateLimitMiddleware(BaseMiddleware):
         
         # Check if user is over the limit
         if len(self.user_requests[user_id]) >= self.limit:
-            m = ("""<b>⛔️ Too many requests!</b>
-You might have to <b>wait a minute</b> to start using it again.
-
-<b>🌟 You can get /vip account for no limitations. </b>
-""")       
+            m = ("""<b>⛔️ Too many requests!</b>""")       
             await event.bot.send_message(chat_id=event.event.from_user.id,
                                          text=m)
             self.user_requests[user_id].append(current_time)
