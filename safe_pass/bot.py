@@ -14,7 +14,7 @@ from safe_pass.middlewares import (DatabaseMiddleware,
                                    LoginRequiredMiddleware,
                                    RateLimitMiddleware)
 
-from safe_pass.handlers import start_router, pack_router, global_router, docs_router
+from safe_pass.handlers import start_router, pack_router, global_router, docs_router, info_router
 
 
 def initialize_logging():
@@ -57,6 +57,7 @@ def main():
     dp.include_router(start_router)
     dp.include_router(pack_router)
     dp.include_router(docs_router)
+    dp.include_router(info_router)
 
     # start polling
     asyncio.run(dp.start_polling(bot))

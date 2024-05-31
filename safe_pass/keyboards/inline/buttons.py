@@ -8,7 +8,7 @@ NEW_MENU = {"text": _("• New | Create new pack"),
 USE_MENU = {"text": _("• Use | Use an available pack"), 
             "callback_data": "pack::use"}
 INFO_MENU = {"text": _("• Info | How am I safe here?"), 
-             "callback_data": "global::description"}
+             "callback_data": "info::info"}
 DELETE_NOW = {"text": _("❌ Delete Message Now!"), 
               "callback_data": "globals::delete_message"}
 CANCEL = {"text": _("🔚 Cancel"),
